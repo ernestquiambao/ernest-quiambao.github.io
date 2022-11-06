@@ -15,9 +15,12 @@ default user avatar
 10) Select project to install
 
 ## How to SAVE work to github
-1) git add -A
-2) git commit -m "create description of commit"
-3) git push
+1) 
+git add -A
+2) 
+git commit -m "create description of commit"
+3) 
+git push
 
 ## How to TEST projects
 1) In terminal, type => os test
