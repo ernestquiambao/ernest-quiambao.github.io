@@ -34,27 +34,60 @@
  */
 
 // YOUR CODE GOES BELOW HERE //
-function makeContact(id, nameFirst, nameLast) {
 
+/*
+I:  takes values ex: (1, 'Max', 'Gaudin')
+O:  returns an object named contact
+C:  N/A
+E:  N/A
+*/
+function makeContact(id, nameFirst, nameLast) { //  FACTORY FUNCTION like createUser in lecture
+    let contact = {//  initialize object contact
+        id: '',
+        nameFirst: '',
+        nameLast: '',
+    }
+    contact.id = id;//  adds key value pair id: value
+    contact.nameFirst = nameFirst;//  adds key value pair nameFirst: value
+    contact.nameLast = nameLast;//  adds key value pair nameLast: value
+    return contact;//  returns object contact
 } 
 
 
-function makeContactList() {
+function makeContactList() {    //  FACTORY FUNCTION will return an object.  Imagine that there is a contact list array = data>contact.json
     /*
      * You need something here to hold contacts. See length api for a hint:
      */
-    var contacts;
+    var contacts = [];
     
     return {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
+        },
+        addContact: function(contact){
+            contacts.push(contact); //  takes contact object and adds it contacts list
+        },
+        findContact: function(fullName){    //  how do i take a fullName and interact with the data to see if matches
+            for (var i = 0; i < contacts.length; i++){    //    loops over contacts array 
+                if (fullName === (contacts[i].nameFirst + " " + contacts[i].nameLast)){//  tests if fullName is equal to firstName plus lastName joined with a space
+                return contacts[i]; //  returns contact
+                }
+            }      
+        },
+        removeContact: function(contact){
+            contacts.splice(contact, 1);
+        },
+        printAllContactNames: function(){
+            let allNames = [];  //  initialize allNames
+            for (var i = 0; i < contacts.length; i++){//  loops over contacts array
+                allNames.push(contacts[i].nameFirst + " " + contacts[i].nameLast);  //  pushes current fullname into allNames array
+            }
+            return allNames.join("\n"); //  returns allNames joined with new line
         }
-    }
+    }    
+
 }
-
-
-
 
 // YOUR CODE GOES ABOVE HERE //
 

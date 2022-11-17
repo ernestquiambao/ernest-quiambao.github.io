@@ -21,12 +21,24 @@
  *  b. you'll need a loop, which one is best?
  *  c. you'll wanna make use of the push() method of Array.
  */
+
+/*
+I:  function takes two integers(NUMBERS) as parameters
+O:  function returns an ARRAY [filled with values between the two passed integers]
+*/
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
-    
+    let array = [];                         //  initialize array
+    if (start < end){                       //  if start is less than than end
+        for (var i = start; i <= end; i++){     //  use forward for loop to add values to array
+            array.push(i);
+            }
+        } else {           //  if else start is greater than end  
+        for (var i = start; i >= end; i--){     //  use backwards for loop to add values to array
+            array.push(i);
+            }   
+        }        
+    return array;//  return array
     // YOUR CODE GOES ABOVE HERE //
 }
 
