@@ -95,7 +95,20 @@ console.log(animal);  //  printing animal
 // Step 6 - A Collection of Animals //////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// ## Step 6 - A Collection of Animals
+//  1. [ ] Create a variable named `animals` and assign it to an empty array.
+//  2. [ ] `push` our `animal` that we created to `animals`. You should now see your first animal appear on your `index.html` page!
+//  3. [ ] `console.log` `animals`. What does it look like?
+//  4. [ ] Create a variable called `duck` and assign it to the data:
+//   - `{ species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh'] }`
+//  5. [ ] `push` `duck` to `animals`
+//  6. [ ] `console.log` `animals`. What does it look like?
+//  7. [ ] Create two more animal objects each with a species, a name, and at least two sounds sounds and add each one of them to `animals.
+//  8. [ ] `console.log` `animals`, and, `console.log` the length of `animals`. Is everything looking right?
 
+var animals = []  //  initializing animals array
+animals.push(animal); //  adding cat to animals array
+console.log(animals);  //printing animls
 
 //////////////////////////////////////////////////////////////////////
 // Step 7 - Making Friends ///////////////////////////////////////////
