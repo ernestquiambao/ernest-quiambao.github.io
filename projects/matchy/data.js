@@ -108,12 +108,36 @@ console.log(animal);  //  printing animal
 
 var animals = []  //  initializing animals array
 animals.push(animal); //  adding cat to animals array
-console.log(animals);  //printing animls
+console.log(animals);  // printing animls
+var duck = { species: 'duck', name: 'Jerome', noises: ['quack', 'honk', 'sneeze', 'woosh'] };  //  creating duck object
+animals.push(duck); //  adding duck object to animals array
+console.log(animals); //  printing animals
+var dog = { species: 'dog', name: 'Stout', noises: ['bark', 'howl', 'beg', 'whine'] };  //  creating dog object
+animals.push(dog);  //  adding dog to animals
+var rooster = { species: 'rooster', name: 'Nugget', noises: ['gobble', 'crow', 'bawk'] }; //  creating rooster object
+animals.push(rooster);  //adding rooster to animals
+console.log(animals); //  printing animals
+console.log(animals.length);  //  printing length of animals
 
 //////////////////////////////////////////////////////////////////////
 // Step 7 - Making Friends ///////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// 1. [ ] Choose a data structure for this **list** of friends.
+// 2. [ ] Write a comment in your code that explains why you chose this data structure.
+// 3. [ ] Create a variable called `friends` and assign it to the data structure that you chose.
+// 4. [ ] Take a look at the documentation for `Math.random` here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// 5. [ ] Write a function called `getRandom` that takes our `animals` array and returns  a random `index` of the input array, using `Math.random`
+// 6. [ ] Using a random index from this function that you just created, get a random animal and add its `name` to `friends`.
+// 7. [ ] `console.log` `friends`.
+// 8. [ ] Using **bracket notation**, add the `friends` list as a **property** also named `friends` on one of the animals in the `animals` array
+// 9. [ ] `console.log` your work.
+
+//  choosing an array for the data structure of friends because it is zero indexed
+ var friends = []; //  initializing friends array
+ function getRandom(array, randomIndex){;  // creating getRandom function that takes an array and returns a random index from input array
+            return array[getRandomInt(array.length)];
+}
 
 
 /**
