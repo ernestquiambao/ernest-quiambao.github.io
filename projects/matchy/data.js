@@ -61,7 +61,15 @@ console.log(noises);  //  printing noises
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Combining Step 1 and 2 ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
+// ## Step 3 - Combining Step 1 and 2
+//  1. [ ] Using **bracket syntax**, assign the `noises` property on `animal` to our new `noises` array.
+//  2. [ ] Using any syntax add another noise to the `noises` property on `animal`.
+//  3. [ ] `console.log` `animal`.
+//  4. [ ] Does it look right?
 
+animal.noises = noises; //  using bracket syntax to add values from noises array to noises property in animal object
+animal.noises.push("beg");  //  adding a value to noises property
+console.log(animal);  //  printing animal
 
 
 /* *******************************************************************
