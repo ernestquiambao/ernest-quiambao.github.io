@@ -135,9 +135,12 @@ console.log(animals.length);  //  printing length of animals
 
 //  choosing an array for the data structure of friends because it is zero indexed
  var friends = []; //  initializing friends array
- function getRandom(array, randomIndex){;  // creating getRandom function that takes an array and returns a random index from input array
-            return array[getRandomInt(array.length)];
+ function getRandom(array){;  // creating getRandom function that takes an array and returns a random index from input array
+            return array[Math.floor(Math.random() * array.length)];
 }
+friends.push(getRandom(animals).name);  //  using getRandom function to add name of random animal to friends array
+console.log(friends); //  printing friends
+dog.friends = friends;  //  adding friends property with value of an array to dog object
 
 
 /**
