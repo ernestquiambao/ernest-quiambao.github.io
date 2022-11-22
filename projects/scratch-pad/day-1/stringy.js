@@ -171,7 +171,7 @@ function join(one, two, three, four) {
     var args = [one, two, three, four];
     //  initialize result with all parameters in an array
 
-    //  returns result joined 
+    //  returns result joined  
     return args.join("");
     // YOUR CODE ABOVE HERE //
 }

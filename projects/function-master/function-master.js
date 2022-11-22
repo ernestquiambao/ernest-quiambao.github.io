@@ -220,7 +220,7 @@ function nonFriends(name, array) {
     for (var i = 0; i < array.length; i++){//  iterate through array
         people.push(array[i]); //   populate people array
     }
-    for (var i = 0; i < array.length; i++){
+    for (var i = 0; i < people.length; i++){
         //  if 
     }
 }

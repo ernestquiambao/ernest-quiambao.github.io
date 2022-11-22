@@ -59,21 +59,16 @@ function remove(animals, name){ //  creating function remove with parameters ani
 //    - Has a **unique** name, meaning no other animals have that name.
 //    - Adds this new Object to the `animals` Array, **only** if all the other conditions pass.
 //    - Make sure it works.
-// function add(array, newObj){
-//     if (newObj.name > 0 && newObj.species > 0){//  tests if newObj has name property greater than 0
-//         for (var i = 0; i < array.length; i++){
-//             var nameExists = false;
-//             if (array[i].name.toLowerCase() == newObj.name.toLowerCase()){
-//                 nameExists = true;
-//             }
-           
-//             }
-//             if (nameExists === false){
-//                 array.push(newObj);
-  
-//               }
-//             }
-//         }
+function add(array, newObj){
+    // if (newObj.name > 0 && newObj.species > 0){//  tests if newObj has name property greater than 0
+        var objIndex = array.findIndex(function(arr){return arr.name == newObj.name});
+        if (objIndex === -1){
+            array.push(newObj);
+            }
+    }  
+// }
+
+
 /**
  * You did it! You're all done with Matchy!
  */
