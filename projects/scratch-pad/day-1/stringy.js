@@ -166,13 +166,13 @@ O: the function returns all of the inputs joined together
 C: N/A
 E: N/A
 */
-function join(stringOne, stringTwo) {
+function join(one, two, three, four) {
     // YOUR CODE BELOW HERE //
-    var args = stringOne.concat(stringTwo);
-    //  initialize result with the value of all inputs joined together
+    var args = [one, two, three, four];
+    //  initialize result with all parameters in an array
 
-    //  returns result
-    return args;
+    //  returns result joined 
+    return args.join("");
     // YOUR CODE ABOVE HERE //
 }
 
