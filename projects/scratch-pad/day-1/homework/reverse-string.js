@@ -19,21 +19,15 @@
  *  d. how do you concatenate Strings? What operator do we use?
  */
 
-/*
-I: function takes a string as a parameter
-O:  function returns a string
-C:  N/A
-E:  N/A
-*/
-
 function reverseString(input) {
     // YOUR CODE GOES BELOW HERE //
-    //  Initializing local array
+    
     let newString = []; // initializing newString
     newString = [...input].reverse().join('');  // reassigning newString with the value of input in reverse
     return newString; //  returns newString
   
     //  returns array
+    
     
     // YOUR CODE GOES ABOVE HERE //
 }

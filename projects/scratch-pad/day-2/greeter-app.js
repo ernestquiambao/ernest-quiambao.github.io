@@ -33,25 +33,20 @@
  *      the exact case.
  */
 
-/*
-I: Number representing time
-O: Logs string greeting to screen
-C:  N/A
-E:  N/A
-*/
-
 function greeter(hour) {
     // YOUR CODE BELOW HERE //
-    if (hour >= 0 && hour <= 11){ // checks if hour is between 0-11
-            console.log("Good Morning!");
-    }  else if (hour >= 12 && hour <= 16){ // checks if hour is between 12-16
-            console.log("Good Afternoon!");//    Logs "Good Afternoon!"
-    }   else if (hour >= 17 && hour <= 21){// checks if hour is between 17-21
-            console.log("Good Evening!");//    Logs "Good Evening!"
-    }   else {// checks if hour is between 22-24 
-            console.log("Good Night!");//    Logs "Good Night!"
     
-    }
+    
+    if (hour >= 0 && hour <= 11){ // checks if hour is between 0-11
+        console.log("Good Morning!");
+}  else if (hour >= 12 && hour <= 16){ // checks if hour is between 12-16
+        console.log("Good Afternoon!");//    Logs "Good Afternoon!"
+}   else if (hour >= 17 && hour <= 21){// checks if hour is between 17-21
+        console.log("Good Evening!");//    Logs "Good Evening!"
+}   else {// checks if hour is between 22-24 
+        console.log("Good Night!");//    Logs "Good Night!"
+
+}
     
     // YOUR CODE ABOVE HERE //
 }

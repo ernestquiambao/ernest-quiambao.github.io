@@ -10,13 +10,6 @@
  *  c. AND for the multiples of five print “Buzz”.
  *  d. FINALLY, for numbers which are multiples of both three and five print “FizzBuzz”.
 */
-
-/*
-I: None
-O: logs numbers 1-100, logs "Fizz" for multiples of 3, logs "Buzz" for multiples of 5, logs "FizzBuzz" for numbers which are multiples of both 3 and 5
-C: N/A
-E: N/A
-*/
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
     for (var i = 1; i < 101; i++){// loops from 1-100
@@ -30,6 +23,8 @@ function fizzBuzz() {
             console.log(i);//  logs iteration number
         }
     }
+
+
 
     // YOUR CODE GOES ABOVE HERE //
 }
