@@ -51,21 +51,29 @@ function remove(animals, name){ //  creating function remove with parameters ani
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
-function add(animals, animal){ 
-    let nameExists = false; 
-    
-    for (let i = 0; i = animals.length; i++){
-        if(animals[i].name === animal.name){
-                nameExists = true;
-        }
-    }
-    if(nameExists === false){
-        animals.push(animal); 
-        }
-    
-    }
-
+// ## Step 4 - Add
+//  1. Write a function declaration called `add` with a signature of `add(animals, animal) { //... }` that:
+//    - Takes 2 parameter, an Array of animals, and an Object representing a new animal to be added.
+//    - Checks that the animal Object has a `name` property with a length > 0.
+//    - Checks that the animal Object has a `species` property with a length > 0.
+//    - Has a **unique** name, meaning no other animals have that name.
+//    - Adds this new Object to the `animals` Array, **only** if all the other conditions pass.
+//    - Make sure it works.
+// function add(array, newObj){
+//     if (newObj.name > 0 && newObj.species > 0){//  tests if newObj has name property greater than 0
+//         for (var i = 0; i < array.length; i++){
+//             var nameExists = false;
+//             if (array[i].name.toLowerCase() == newObj.name.toLowerCase()){
+//                 nameExists = true;
+//             }
+           
+//             }
+//             if (nameExists === false){
+//                 array.push(newObj);
+  
+//               }
+//             }
+//         }
 /**
  * You did it! You're all done with Matchy!
  */
