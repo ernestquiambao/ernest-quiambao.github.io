@@ -12,11 +12,18 @@
  * base.
  */
 function createGreaterThanFilter(base) {
+
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+
+    return function(value){ //  returning function
+       if (value > base){   //  tests if value is greater than base
+        return true;    //  returns true
+       }else{   //  any other condition
+        return false;   //  returns false
+        }
+    }    
+
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -27,9 +34,13 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    return function(value){//  returns function
+        if (value < base){//  tests if value is less than base
+            return true;//  returns true
+        }else{//  all other conditions
+        return false;//  returns false
+        }
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -41,9 +52,13 @@ function createLessThanFilter(base) {
  */
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    return function(string){    //  returns function
+        if (string.toLowerCase().charAt(0) === startsWith.toLowerCase()){   //  tests if given string starts with startsWith
+            return true;    //  returns true
+        }else{  //  all other conditions
+            return false;   //  returns false
+        }    
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -55,7 +70,13 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
+    return function(string){    //  returns function
+        if (string.toLowerCase().charAt(string.length - 1) === endsWith.toLowerCase()){   //  tests if given string ends with startsWith
+            return true;    //  returns true
+        }else{  //  all other conditions
+            return false;   //  returns false
+        }    
+    }
     
     
     
@@ -71,10 +92,13 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+
+    var array = []; //  initializing array
+    for (var i = 0; i < strings.length; i++){   //  looping though strings
+        array.push(modify(strings[i])); //  pushing values into array
+    }
+    return array;//  returning array
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -89,10 +113,18 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
+    let arr = [];
+    for (var i = 0; i < strings.length; i++){   //  looping over strings
+        if (test(strings[i])){  //  testing if iteration passes test
+            arr.push(i);    //  pushing i into arr
+        }
     
-    
-    
-    
+    }
+    if (arr.length === strings.length){ //  testing if all strings were passed into arr
+        return true;    //  returning true
+    }else{  //  all other conidtions
+        return false;   //  returning false
+    }  
     // YOUR CODE ABOVE HERE //
 }
 
