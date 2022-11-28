@@ -214,16 +214,23 @@ function addFriend (name, object) {
     //     assert.deepEqual(nonFriends("Bob", data), ["Jimmy", "Liza", "Sara"]);
     //     assert.deepEqual(nonFriends("Sara", data), ["Bob","Liza"]);
     //   });
-function nonFriends(name, array) {
-    let notFriends = [];    //  initializing return array notFriends
-    let people = [];
-    for (var i = 0; i < array.length; i++){//  iterate through array
-        people.push(array[i]); //   populate people array
+    function nonFriends(name, data) {
+        let notFriends = [];    //  initializing return array notFriends
+        for (var i = 0; i < data.length; i++){  //  iterate through array
+            notFriends.push(data[i].name);   //  push name into notFriends
+        } 
+        for (var i = 0; i < name.friends; i++){  //  iterate through friends of name
+            if (notFriends.hasOwnProperty(name.friends[i])){  //  testing if friends already exist
+                notFriends.splice(i, 1);  //  deleting friend value from nonFriends
+            }
+        }
+        for (var i = 0; i < notFriends.length; i++){  //  looping through notFriends
+          if (notFriends[i] === name){  //  testing if name exists
+            notFriends.splice(i, 1);  //  removing name
+          }
+        }
+        return notFriends;  //  returns notFriends
     }
-    for (var i = 0; i < people.length; i++){
-        //  if 
-    }
-}
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////

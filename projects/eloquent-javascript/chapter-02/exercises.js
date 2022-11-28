@@ -3,15 +3,36 @@
 // triangles ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function triangles() {
-
-}
+// function triangles() {
+//     var poundTown = ""; //  initialize
+//     for (var i = 1; i < 8; i++){   // loop 
+//         poundTown += "#"; //  add and reassign
+//         console.log(poundTown);   //  print 
+//       }
+//     }
+function triangles(num) {
+  var poundTown = ""; //  initialize
+  for (var i = 1; i < num + 1; i++){   // loop 
+      poundTown += "#"; //  add and reassign
+      console.log(poundTown);   //  print 
+    }
+  }     
 ////////////////////////////////////////////////////////////////////////////////
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function fizzBuzz() {
-  
+  for (var i = 1; i < 16; i++){ //  loop from 1 to 15
+    if (i % 3 === 0   &&  i % 5 !== 0){ //  testing if i is divisible by 3 AND it is not divisible by 5
+      console.log("fizz");  //  printing fizz
+    }else if (i % 3 !== 0  &&  i % 5 === 0){  //  testing if i is divisible by 5 AND it is not divisible by 3
+      console.log("buzz");  //  printing buzz
+    }else if (i % 3 === 0   &&  i % 5 === 0){ //  testing if i is divisible by 3 AND 5
+      console.log("fizzbuzz");  //  printing fizzbuzz
+    }else{  //  all other conditions
+      console.log(i); //  printing i
+    }
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
