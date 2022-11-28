@@ -2,19 +2,19 @@
 // min /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function min(num1, num2) {
-  return Math.min(num1, num2);
+function min(num1, num2) {  //  function min takes 2 parameters: num1 and num2
+  return Math.min(num1, num2);  //  returns the smaller of the two arguments
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // isEven //////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function isEven(num) {
-  if (num % 2 === 0){
-    return true;
-  }else{
-    return false;
+function isEven(num) {  //  function isEven takes num as parameter
+  if (num % 2 === 0){   //  tests if num is even
+    return true;            //  returns true
+  }else{                //  all other conditions
+    return false;           //  returns false
   }
 }
 
@@ -22,14 +22,14 @@ function isEven(num) {
 // countChars //////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countChars(string, char) {
-  var thisChar = [];
-  for (var i = 0; i < string.length; i++){
-    if (string[i] === char){
-      thisChar.push(i);
+function countChars(string, char) { //  takes two parameters: string and char
+  var thisChar = [];  //  initializes thisChar as empty array
+  for (var i = 0; i < string.length; i++){  //  loops over string argument
+    if (string[i] === char){  //  tests if character is equal to char argument
+      thisChar.push(i); //  pushes i into thisChar array
     }
   }
-  return thisChar.length;
+  return thisChar.length; //  returns length of thisChar array
 }
 
 
@@ -37,14 +37,14 @@ function countChars(string, char) {
 // countBs /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function countBs(string) {
-  var bigBees = [];
-  for (var i = 0; i < string.length; i++){
-    if (string[i] === "B"){
-      bigBees.push(i);
+function countBs(string) {  //  takes string as parameter
+  var bigBees = []; //  initializes bigBees as empty array
+  for (var i = 0; i < string.length; i++){  //  loops over string
+    if (string[i] === "B"){ //  tests if string[i] character is equal to "B"
+      bigBees.push(i);  //  pushes i into bigBees
     }
   }
-  return bigBees.length;
+  return bigBees.length;  //  returns length of bigBees array
 }
 
 ////////////////////////////////////////////////////////////////////////////////
