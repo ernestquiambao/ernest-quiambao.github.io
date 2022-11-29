@@ -3,7 +3,9 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-var _ = {};
+const { slice } = require("lodash");
+
+var _ = {};  
 
 
 /**
@@ -21,6 +23,11 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+
+_.identity = function(value){
+    //  return value
+    return value;
+}
 
 /** _.typeOf
 * Arguments:
@@ -42,7 +49,39 @@ var _ = {};
 * _.typeOf([1,2,3]) -> "array"
 */
 
-
+_.typeOf = function(value){
+    //  test if value is a string
+    if (typeof value === "string"){
+        return "string";
+    // test if value is an array
+      }else if (Array.isArray(value)){   
+        //  return string "array"
+        return "array";
+    //  else test if object is a collection
+    }else if (typeof value === "object" && value !== null && !(Array.isArray(value)) && !(value instanceof Date)){
+        //  return object
+        return "object";
+    //  else test if value is undefined
+    }else if (typeof value === "undefined"){
+        //  return string "undefined"
+        return "undefined";
+    //  else test if value is a number
+    }else if (typeof value === "number"){
+        //  return "number"
+        return "number";
+    //  else test if value is a boolean
+    }else if (typeof value === "boolean"){
+        //  return string "boolean"
+        return "boolean";
+    //  else test if value is null
+    }else if (value === null){
+        //  return string "null"
+        return "null";
+    }else if (typeof value === "function"){
+        //  return string "function"
+        return "function";
+    }
+}
 /** _.first
 * Arguments:
 *   1) An array
@@ -61,6 +100,21 @@ var _ = {};
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
+_.first = function(array, number){
+    //  tests if array is not an array
+    if (!(Array.isArray(array))){
+            //  returns array literal
+            return [];
+    //  tests if number is not given OR NaN
+    }else if (typeof number === 'undefined' || isNaN(number)){
+            //  return first element of array
+            return array[0];
+    //  all other conditions
+    }else{
+        return array.slice(0, number);//  return first number items of array
+    
+    }
+}
 
 /** _.last
 * Arguments:
@@ -80,6 +134,21 @@ var _ = {};
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+_.last = function(array, number){
+    //  tests if array is NOT an array
+    if (!(Array.isArray(array))){
+        // return array literal
+        return [];
+    //  tests if number is not given OR NaN
+    }else if (typeof number === 'undefined' || isNaN(number)){
+        //  return last element of array
+        return array[array.length - 1];
+    //  all other conditions
+    }else {
+        //  return last number items of array
+        return array.slice(number, array.length - 1);
+    }
+}
 
 /** _.indexOf
 * Arguments:
@@ -97,6 +166,9 @@ var _ = {};
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value){
+    //
+}
 
 /** _.contains
 * Arguments:
@@ -130,7 +202,18 @@ var _ = {};
 *      -> should log "a" "b" "c" to the console
 */
 
-
+_.each = function(collection, func){
+    if (Array.isArray(collection)){//  determine if collection is an array
+        for (var i = 0; i < collection; i++){//  iterate through collection
+            func(collection[i], i , collection) //  call func on each item in the array
+        }
+    }   else    {//  else it's an object
+        //iterate through collection
+        for (let key in collection){
+            func(collection[key], key, collection);
+        }
+    }
+}
 /** _.unique
 * Arguments:
 *   1) An array
