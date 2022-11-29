@@ -167,7 +167,15 @@ _.last = function(array, number){
 */
 
 _.indexOf = function(array, value){
-    //
+    //  iterate through array
+    for (var i = 0; i < array.length; i++){
+        //  test if current iteration strictly equals value
+        if (array[i] === value){
+            //  return current iteration value
+            return i;   
+        }
+    }
+    return -1;
 }
 
 /** _.contains
