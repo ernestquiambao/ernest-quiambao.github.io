@@ -3,7 +3,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-const { slice } = require("lodash");
+// const { includes } = require("lodash");
 
 var _ = {};  
 
@@ -193,6 +193,11 @@ _.indexOf = function(array, value){
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
+_.contains = function(array, value){
+    //  loop through array
+    return (array.includes(value)? true : false);
+    
+}
 
 /** _.each
 * Arguments:
@@ -212,7 +217,7 @@ _.indexOf = function(array, value){
 
 _.each = function(collection, func){
     if (Array.isArray(collection)){//  determine if collection is an array
-        for (var i = 0; i < collection; i++){//  iterate through collection
+        for (var i = 0; i < collection.length; i++){//  iterate through collection
             func(collection[i], i , collection) //  call func on each item in the array
         }
     }   else    {//  else it's an object
@@ -221,6 +226,7 @@ _.each = function(collection, func){
             func(collection[key], key, collection);
         }
     }
+return collection;
 }
 /** _.unique
 * Arguments:
@@ -232,6 +238,29 @@ _.each = function(collection, func){
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+// _.indexOf = function(array, value){
+//     //  iterate through array
+//     for (var i = 0; i < array.length; i++){
+//         //  test if current iteration strictly equals value
+//         if (array[i] === value){
+//             //  return current iteration value
+//             return i;   
+//         }
+//     }
+//     return -1;
+// }
+
+_.unique = function(array){
+    //  initialize newArr
+    let newArr = [];
+    //
+    for (var i = 0; i < array.length; i++){
+        if (newArr.indexOf(array[i]) === - 1){
+            newArr.push(array[i]);
+        }
+    }
+return newArr;
+}
 
 /** _.filter
 * Arguments:
@@ -249,6 +278,15 @@ _.each = function(collection, func){
 *   use _.each in your implementation
 */
 
+_.filter = function(array, func){
+    let newArray = [];
+    for (var i = 0; i < array.length; i++){
+        if (func(array[i], i, array)){
+            newArray.push(array[i]);
+        }
+    }
+    return newArray;
+}
 
 /** _.reject
 * Arguments:
@@ -263,6 +301,15 @@ _.each = function(collection, func){
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+_.reject = function(array, func){
+    let newArray = [];
+    for (var i = 0; i < array.length; i++){
+        if (func(array[i], i, array) === false){
+            newArray.push(array[i]);
+        }
+    }
+    return newArray;
+}
 
 /** _.partition
 * Arguments:
@@ -283,6 +330,16 @@ _.each = function(collection, func){
 }
 */
 
+_.partition = function(array, func){
+    let newArr = [[], []];//  initialize new array with two sub arrays: falsey and truthy
+    for (var i = 0; i < array.length; i++){//  loop through array
+        if (func(array[i], i, array)){//  call function for each element
+            newArr[0].push(array[i]);//  
+            }//
+        }else{
+            newArr[1].push(array[i]);
+        }
+}
 
 /** _.map
 * Arguments:
@@ -334,7 +391,43 @@ _.each = function(collection, func){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+// _.every = function(collection, func){
+//     //  determine if collection is array
+//     if (Array.isArray(collection)){
+//         //determine if func wasn't passed in
+//         if (func === undefined){
+//             for (var i = 0; i < collection.length; i++)  //   iterate
+//             //determine if the current item is not truthy (faster)
+//             if (!collection[i]){
+//                 // return false
+//                 return false;
+//             }
+//         }else {//  is array and func was passed
+//             for (let i = 0; i < collection.length; i++){
+//                 //determine if current value return false when passed into func
+//                 if (func(collection[i], i, collection)){
+//                     return false
+//                 }
+//             }
+//         }
+//     }else { // it was an object
+//         if (func === undefined){//  determine if current value returns false when passed into func
+//             for (var key in collection){// 
+//                 if (!collection[key]);
+//                     return false;
+//                 }
+//             }else { //  func is passed
+//                 for (var key in collection){    //  iterate through object
+//                     if (func(collection[key], [key], collection === false)){
+//                         return false;
+//                     }
+//             }
+//             }
 
+//     }
+//         //return false
+//     return true;//else when returns object but same as above
+// }
 /** _.some
 * Arguments:
 *   1) A collection
