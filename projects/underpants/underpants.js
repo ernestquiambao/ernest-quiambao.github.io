@@ -57,7 +57,7 @@ _.typeOf = function(value){
       }else if (Array.isArray(value)){   
         //  return string "array"
         return "array";
-    //  else test if object is a collection
+    //  else test if value is an object
     }else if (typeof value === "object" && value !== null && !(Array.isArray(value)) && !(value instanceof Date)){
         //  return object
         return "object";
@@ -101,8 +101,8 @@ _.typeOf = function(value){
 */
 
 _.first = function(array, number){
-    //  tests if array is not an array
-    if (!(Array.isArray(array))){
+    //  tests if array is not an array OR number is negative
+    if (!(Array.isArray(array)) || number < 0){
             //  returns array literal
             return [];
     //  tests if number is not given OR NaN
@@ -111,8 +111,8 @@ _.first = function(array, number){
             return array[0];
     //  all other conditions
     }else{
-        return array.slice(0, number);//  return first number items of array
-    
+            //  return first number items of array
+        return array.slice(0, number);
     }
 }
 
@@ -143,10 +143,14 @@ _.last = function(array, number){
     }else if (typeof number === 'undefined' || isNaN(number)){
         //  return last element of array
         return array[array.length - 1];
+    // tests if array length is less than number
+    }else if (array.length < number){
+        //  returns array
+        return array;
     //  all other conditions
     }else {
         //  return last number items of array
-        return array.slice(number, array.length - 1);
+        return array.slice(array.length - number);
     }
 }
 
@@ -331,16 +335,20 @@ _.reject = function(array, func){
 */
 
 _.partition = function(array, func){
-    let newArr = [[], []];//  initialize new array with two sub arrays: falsey and truthy
-    for (var i = 0; i < array.length; i++){//  loop through array
-        if (func(array[i], i, array)){//  call function for each element
-            newArr[0].push(array[i]);//  
-            }//
-        }else{
-            newArr[1].push(array[i]);
-        }
+    //  initialize new array with two sub arrays: falsey and truthy
+    let newArr = [[], []];
+    //  loop through array
+    for (var i = 0; i < array.length; i++){
+        //  call function for each element passing arguments(element, key, array)
+        if (func(array[i], i, array) === true){
+            //  pushing into newArray index 0
+                newArr[0].push(array[i]);
+            } else {
+                newArr[1].push(array[i]);
+            }
+    }
+return newArr;    
 }
-
 /** _.map
 * Arguments:
 *   1) A collection
@@ -357,6 +365,27 @@ _.partition = function(array, func){
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function(collection, func){
+    //  initialize newArr
+    let newArr = [];
+    //  testing if collection IS an array
+    if (Array.isArray(collection)){
+        //  loop through array
+        for (var i = 0; i < collection.length; i++){
+            //  push, into newArr, the result of passing function with arguments: the element, it's index, collection
+            newArr.push(func(collection[i], i, collection));
+            }
+    //  else is object
+    } else {        
+        //  loop through object
+        for (var key in collection){
+            //  push, into newArr, the result of passing function with arguments: the value
+            newArr.push(func(collection[key], key, collection));
+            }
+        }
+    //  return newArr
+    return newArr;
+}
 
 /** _.pluck
 * Arguments:
