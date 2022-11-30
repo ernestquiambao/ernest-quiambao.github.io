@@ -495,16 +495,12 @@ _.some = function(collection, func){
                 for (var i = 0; i < collection.length; i++){    //  loop through collection
                     if (collection[i]){ //  test if at least one item is true
                         return true;    //  return true
-                    }else{ //  else
-                        return false;//  return false
                     }
                 }
             }else{  //  func is passed
                 for (var i = 0; i < collection.length; i++){    //  iterate through collection
                     if (func(collection[i], i, collection) === true){    // Test if element is true
                         return true;    // return true
-                    }else{  //  All elements are false
-                        return false;
                     }
                 }
             }
@@ -513,13 +509,17 @@ _.some = function(collection, func){
             for (var key in collection){    //  iterate through object
                 if (func(collection[key], key, collection)){    //  Test if element is true
                     return true;    //  return true
-                }else{  // else all elements are falsey
-                    return false;//  return false;
+                }
+            }
+        }else {
+            for (var key in collection){
+                if (func(collection[key], key, collection)){
+                    return true;
                 }
             }
         }
     }
-    return true;
+    return false;
 }
 
 
@@ -554,12 +554,12 @@ _.reduce = function(array, func, seed){
     if (seed === undefined){
         result = array[0];
         for (let i = 1; i < array.length; i++){ //  iterate through array at 1 index
-            result = func(result, array[i], array, i);  //
+            result = func(result, array[i], i, array);  //
         }
     } else {    //  else it did
         result = seed;
         for (let i = 0; i < array.length; i++){
-            result = func(result, array[i], array, i);
+            result = func(result, array[i], i, array);
         }
     }
 
@@ -580,6 +580,13 @@ return result;
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function(object1, ...moreObjects){
+    for (var i = 0; i < moreObjects.length; i++){//  iterate through moreObjects
+        Object.assign(object1, moreObjects[i]);// assign current iteration to object1
+    }
+    return object1;//  return object
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////

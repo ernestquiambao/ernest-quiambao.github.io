@@ -215,36 +215,53 @@ function addFriend (name, object) {
     //     assert.deepEqual(nonFriends("Sara", data), ["Bob","Liza"]);
     //   });
     function nonFriends(name, data) {
-        // initialize notFriends array
-        let notFriends = [];
-        //  iterate through data array
-        for (var i = 0; i < data.length; i++){
-            //  push data[i].name into notFriends array
-            notFriends.push(data[i].name);
-        }
-        // iterate through data array
-        for (var i = 0; i < data.length; i++){
-            //  test if data[i].name is name
-            if (data[i].name === name){
-                //  iterate through data[i].friends
-                for (var i = 0; i < data[i].friends.length; i++){
-                    //  test if data[i]. friends is an empty array
-                    if (data[i].friends === []){
-                        //  return notFriends;
-                        return notFriends;
-                    //  else data[i].friends is not an empty array
-                    }else { 
-                        //  iterate through data[i].friends
-                        for (var j = 0; j < data[i].friends; j++){
-                            //  remove current iteration value from notfriends
-                            notFriends.splice(indexOf(data[i].friends[j], 1));
-                            }
-                    }
-                }
+        let notFriends = []; //  initialize notFriends array
+        let person = {};    // initialize person object
+        let contacts = [];  //  initialize contacts array
+        for (var i = 0; i < data.length; i++){  // iterate through data
+            if (data[i].name === name){//  test if name is same as current iteration name
+                person = data[i];//  assign person with current iteration
+            }else{  //  not same name
+                contacts.push(data[i].name);    //  populate contacts
             }
         }
-    return notFriends;
+        for (var i = 0; i < contacts.length; i++){//  iterate though contacts
+            if (!person.friends.includes(contacts[i])){//  test if contacts[i] is NOT in person.friends
+            notFriends.push(contacts[i]);   //  push current name into notFriends
+            }
+        }
+    return notFriends;  //  return notFriends array
     }
+    //     // initialize notFriends array
+    //     let notFriends = [];
+    //     //  iterate through data array
+    //     for (var i = 0; i < data.length; i++){
+    //         //  push data[i].name into notFriends array
+    //         notFriends.push(data[i].name);
+    //     }
+    //     // iterate through data array
+    //     for (var i = 0; i < data.length; i++){
+    //         //  test if data[i].name is name
+    //         if (data[i].name === name){
+    //             //  iterate through data[i].friends
+    //             for (var i = 0; i < data[i].friends.length; i++){
+    //                 //  test if data[i]. friends is an empty array
+    //                 if (data[i].friends === []){
+    //                     //  return notFriends;
+    //                     return notFriends;
+    //                 //  else data[i].friends is not an empty array
+    //                 }else { 
+    //                     //  iterate through data[i].friends
+    //                     for (var j = 0; j < data[i].friends; j++){
+    //                         //  remove current iteration value from notfriends
+    //                         notFriends.splice(indexOf(data[i].friends[j], 1));
+    //                         }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // return notFriends;
+    // }
     //     let notFriends = [];    //  initializing return array notFriends
     //     for (var i = 0; i < data.length; i++){  //  iterate through array
     //         notFriends.push(data[i].name);   //  push name into notFriends
