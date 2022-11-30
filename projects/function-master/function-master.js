@@ -235,25 +235,73 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+    // /* global updateObject */
+    // QUnit.test("updateObject() : Should take an object, a key and a value. Should update the property <key> on <object> with new <value>. If <key> does not exist on <object> create it.", function(assert){
+    //     var data = {a: "one", b: "two", "hokey": false};
+    //     assert.deepEqual(updateObject(data, "b", "three"), {a:"one", b:"three", hokey: false});
+    //     var data = {a: "one", b: "two", "hokey": false};
+    //     assert.deepEqual(updateObject(data, "ponies", "yes"), {a:"one", b:"two", hokey: false, ponies: "yes"});
+    //     var data = {a: "one", b: "two", "hokey": false};
+    //     assert.deepEqual(updateObject(data, "a", Infinity), {a:Infinity, b:"two", hokey: false});
+    //   });
 function updateObject(object, key, value) {
-
+    //  access object with key and assign it value
+    object[key] = value;
+    //  return object
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+    // /* global removeProperties */
+    // QUnit.test("removeProperties() : Should take an object and an array of strings. Should remove any properties on <object> that are listed in <array>", function(assert){
+    //     var data = {a: "one", b: "two", "hokey": false};
+    //     removeProperties(data, ["a","hokey"]);
+    //     assert.deepEqual(data, {b: "two"});
+  
+    //     var data = {a: "one", b: "two", "hokey": false};
+    //     removeProperties(data, ["b"])
+    //     assert.deepEqual(data, {a: "one", "hokey": false});
+  
+    //     var data = {a: "one", b: "two", hokey: false};
+    //     removeProperties(data, []);
+    //     assert.deepEqual(data, {a: "one", b: "two", "hokey": false});
+    //   });
 function removeProperties(object, array) {
-
+    //  loop through array
+    for (var i = 0; i < array.length; i++){
+        //  test if current iteration property exists in object
+        if (object.hasOwnProperty(array[i])){
+            //  delete object property
+            delete object[array[i]];
+        }
+    }
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 16 - Dedup ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+    // /* global dedup */
+    // QUnit.test( "dedup() : Should take an array and return an array with all the duplicates removed", function( assert ) {
+    //     var arrayOne = [1,2,2,2,3,4,5,5,5,5,"a","b","b","b","c"];
+    //     var arrayTwo = ["hello", "hello", "hello", "hello", "hello", "world", "hello", "world", "world", "world"];
+    //     assert.deepEqual(dedup(arrayOne), [1,2,3,4,5,"a","b","c"]);
+    //     assert.deepEqual(dedup(arrayTwo), ["hello", "world"]);
+    //   });
 function dedup(array) {
-
+    //  initialize newArr
+    let newArr = [];
+    //  iterate over array
+    for (var i = 0; i < array.length; i++){
+        //  tests if current iteration value exists in newArr
+        if (newArr.indexOf(array[i]) === - 1){
+            //  pushes current iteration value into newArr
+            newArr.push(array[i]);
+        }
+    }
+//  returns newArr
+return newArr;
 }
 
 //////////////////////////////////////////////////////////////////////
