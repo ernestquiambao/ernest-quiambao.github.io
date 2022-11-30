@@ -215,22 +215,52 @@ function addFriend (name, object) {
     //     assert.deepEqual(nonFriends("Sara", data), ["Bob","Liza"]);
     //   });
     function nonFriends(name, data) {
-        let notFriends = [];    //  initializing return array notFriends
-        for (var i = 0; i < data.length; i++){  //  iterate through array
-            notFriends.push(data[i].name);   //  push name into notFriends
-        } 
-        for (var i = 0; i < name.friends; i++){  //  iterate through friends of name
-            if (notFriends.hasOwnProperty(name.friends[i])){  //  testing if friends already exist
-                notFriends.splice(i, 1);  //  deleting friend value from nonFriends
+        // initialize notFriends array
+        let notFriends = [];
+        //  iterate through data array
+        for (var i = 0; i < data.length; i++){
+            //  push data[i].name into notFriends array
+            notFriends.push(data[i].name);
+        }
+        // iterate through data array
+        for (var i = 0; i < data.length; i++){
+            //  test if data[i].name is name
+            if (data[i].name === name){
+                //  iterate through data[i].friends
+                for (var i = 0; i < data[i].friends.length; i++){
+                    //  test if data[i]. friends is an empty array
+                    if (data[i].friends === []){
+                        //  return notFriends;
+                        return notFriends;
+                    //  else data[i].friends is not an empty array
+                    }else { 
+                        //  iterate through data[i].friends
+                        for (var j = 0; j < data[i].friends; j++){
+                            //  remove current iteration value from notfriends
+                            notFriends.splice(indexOf(data[i].friends[j], 1));
+                            }
+                    }
+                }
             }
         }
-        for (var i = 0; i < notFriends.length; i++){  //  looping through notFriends
-          if (notFriends[i] === name){  //  testing if name exists
-            notFriends.splice(i, 1);  //  removing name
-          }
-        }
-        return notFriends;  //  returns notFriends
+    return notFriends;
     }
+    //     let notFriends = [];    //  initializing return array notFriends
+    //     for (var i = 0; i < data.length; i++){  //  iterate through array
+    //         notFriends.push(data[i].name);   //  push name into notFriends
+    //     } 
+    //     for (var i = 0; i < name.friends; i++){  //  iterate through friends of name
+    //         if (notFriends.hasOwnProperty(name.friends[i])){  //  testing if friends already exist
+    //             notFriends.splice(i, 1);  //  deleting friend value from nonFriends
+    //         }
+    //     }
+    //     for (var i = 0; i < notFriends.length; i++){  //  looping through notFriends
+    //       if (notFriends[i] === name){  //  testing if name exists
+    //         notFriends.splice(i, 1);  //  removing name
+    //       }
+    //     }
+    //     return notFriends;  //  returns notFriends
+    // }
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
