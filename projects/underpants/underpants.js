@@ -220,18 +220,24 @@ _.contains = function(array, value){
 */
 
 _.each = function(collection, func){
-    if (Array.isArray(collection)){//  determine if collection is an array
-        for (var i = 0; i < collection.length; i++){//  iterate through collection
-            func(collection[i], i , collection) //  call func on each item in the array
+    //  determine if collection is an array
+    if (Array.isArray(collection)){
+        //  iterate through collection
+        for (var i = 0; i < collection.length; i++){
+            //  invoking func with the element, it's index, <collection>
+            func(collection[i], i , collection) 
         }
-    }   else    {//  else it's an object
+     //  else it's an object
+    } else {
         //iterate through collection
         for (let key in collection){
+            //  invoking func with property's value, it's key, <collection>
             func(collection[key], key, collection);
         }
     }
 return collection;
 }
+
 /** _.unique
 * Arguments:
 *   1) An array
@@ -398,6 +404,12 @@ _.map = function(collection, func){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function(array, property){
+    //  return f
+   return array.map(function(value){
+    return value[property];
+    });
+}
 
 /** _.every
 * Arguments:
@@ -420,43 +432,43 @@ _.map = function(collection, func){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-// _.every = function(collection, func){
-//     //  determine if collection is array
-//     if (Array.isArray(collection)){
-//         //determine if func wasn't passed in
-//         if (func === undefined){
-//             for (var i = 0; i < collection.length; i++)  //   iterate
-//             //determine if the current item is not truthy (faster)
-//             if (!collection[i]){
-//                 // return false
-//                 return false;
-//             }
-//         }else {//  is array and func was passed
-//             for (let i = 0; i < collection.length; i++){
-//                 //determine if current value return false when passed into func
-//                 if (func(collection[i], i, collection)){
-//                     return false
-//                 }
-//             }
-//         }
-//     }else { // it was an object
-//         if (func === undefined){//  determine if current value returns false when passed into func
-//             for (var key in collection){// 
-//                 if (!collection[key]);
-//                     return false;
-//                 }
-//             }else { //  func is passed
-//                 for (var key in collection){    //  iterate through object
-//                     if (func(collection[key], [key], collection === false)){
-//                         return false;
-//                     }
-//             }
-//             }
-
-//     }
-//         //return false
-//     return true;//else when returns object but same as above
-// }
+_.every = function(collection, func){
+    //  determine if collection is array
+    if (Array.isArray(collection)){
+        //determine if func wasn't passed in
+        if (func === undefined){
+            for (var i = 0; i < collection.length; i++){  //   iterate
+            //determine if the current item is not truthy (faster)
+            if (!collection[i]){
+                // return false
+                return false;
+                }
+            }
+        }else {//  is array and func was passed
+            for (let i = 0; i < collection.length; i++){
+                //determine if current value return false when passed into func
+                if (func(collection[i], i, collection) === false){
+                    return false;
+                }
+            }
+        }
+    }else { // it was an object
+        if (func === undefined){//  determine if current value returns false when passed into func
+            for (var key in collection){// 
+                if (!collection[key]){
+                    return false;
+                    }
+                }
+            }else { //  func is passed
+                for (var key in collection){    //  iterate through object
+                    if (func(collection[key], key, collection) === false){
+                        return false;
+                    }
+                }
+            }
+    } 
+    return true;
+}
 /** _.some
 * Arguments:
 *   1) A collection
@@ -477,6 +489,38 @@ _.map = function(collection, func){
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+_.some = function(collection, func){
+    if (Array.isArray(collection)){ //  test if collection is array
+            if (func === undefined){ // test if func is not passed
+                for (var i = 0; i < collection.length; i++){    //  loop through collection
+                    if (collection[i]){ //  test if at least one item is true
+                        return true;    //  return true
+                    }else{ //  else
+                        return false;//  return false
+                    }
+                }
+            }else{  //  func is passed
+                for (var i = 0; i < collection.length; i++){    //  iterate through collection
+                    if (func(collection[i], i, collection) === true){    // Test if element is true
+                        return true;    // return true
+                    }else{  //  All elements are false
+                        return false;
+                    }
+                }
+            }
+    }else { //  else collection is an object
+        if (func === undefined){ //  test if func is not passed
+            for (var key in collection){    //  iterate through object
+                if (func(collection[key], key, collection)){    //  Test if element is true
+                    return true;    //  return true
+                }else{  // else all elements are falsey
+                    return false;//  return false;
+                }
+            }
+        }
+    }
+    return true;
+}
 
 
 /** _.reduce
@@ -498,6 +542,29 @@ _.map = function(collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+//seed value initializes return value
+//reult = 0
+//iterate through array
+    //  0
+        //retult = func(0, 1, 0, [...])
+_.reduce = function(array, func, seed){
+    //  create result variable
+    let result;
+    //  determine if seed did not receive a value
+    if (seed === undefined){
+        result = array[0];
+        for (let i = 1; i < array.length; i++){ //  iterate through array at 1 index
+            result = func(result, array[i], array, i);  //
+        }
+    } else {    //  else it did
+        result = seed;
+        for (let i = 0; i < array.length; i++){
+            result = func(result, array[i], array, i);
+        }
+    }
+
+return result;
+}
 
 /** _.extend
 * Arguments:
