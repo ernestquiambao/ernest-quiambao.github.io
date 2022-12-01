@@ -1,36 +1,36 @@
 /**
  * OPERATORS:
  * 
- * 0.  Operators in javascript allow us to manipulate and interact with our data
- * 
- * 1.  Variables are created using the keyword, var, followed by the name (id or alias) we wish to assign to our variable.
- * 
- * 2.  There are two phases of using variables: declaration and assignment.
+ * 0.  Operators in javascript allow us to manipulate and interact with our data.  They may *
+ *     return new values, allow assignment or re-assignment of values, or allow us to apply *
+ *     reason.
+ * 1.  Assignment operators assign the value to our data.
+ * 2.  Arithmetic  operators take two values and produces a new value.
+ * 3.  Comparison operators are binary, meaning they act on two values, to produce a *
+ *     boolean value.
+ * 4.  Logical operators allow us to "reason" about booleans
+ * 5.  Unary operators produces a string value type of value given to a value
+ * 6.  Ternary operator (Also called Conditional operator) takes three values.  The first *
+ *     value will resolve to true or false and one of the other two will be returned *
+ *     depending on how the first value resolves 
  */  
 
-/*
-assignment. allows 
-arithmetic  operators take two values and produces a new value 
-comparison operators are binary, meaning they act on two values, to produce a boolean value
-logical operators allow us to "reason" about booleans
-unary   produces a string value of the naming the value type of a given value
-ternary
-
- */
-
-//  1.  Declaration //
-//  When a variable is first declared, it's value is undefined
-var nameFirst;
-console.log(nameFirst);  //  prints => undefined
-
-//  2.  Assignment  //
-//  After a variable is declared it can be assigned or initialized a value
-name = "Ernest";
-console.log(nameFirst) // prints => Ernest
-
-//  3.  Re-assignment   //
-//  After a variable has been assigned an initial value, it can be updated indefinitely with a new value
-nameFirst = "Big Ern";
-console.log(nameFirst) // prints => Big Ern
-nameFirst = "Ern Dawg"; 
-console.log(nameFirst);// prints => Ern Dawg
+//  1.  Assignment Operators //
+//  Simple assignment operator "=" : Assigns the value of the right operand to the left operand.
+var a = 7;
+console.log(a)  // prints => 7
+//  Addition assignment operator "+=" : Assigns the left operand the result of adding itself to the right operand.
+a += 1;
+console.log(a); // prints => 8
+//  Subtraction assignment operator "-=" : Assigns the left operand the result of subtracting the right operand from itself
+a -= 1;
+console.log(a); // prints => 7
+//  Multiplication assignment operator "*=" : Assigns the left operand the result of multiplying the right operand and itself.
+a *= 2;
+console.log(a); //  prints => 14
+//  Division assignment operator "/=" : Assigns the left operand the result of dividing itself by the right operand.
+a /= 2;
+console.log(a); //  prints => 7
+//  Remainder assignment operator "%=" : Assigns the left operand the remainder of dividing itself by the right operand.
+a %= 2;
+console.log(a); //  prints => 1
