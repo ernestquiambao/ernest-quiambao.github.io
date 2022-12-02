@@ -138,9 +138,47 @@ var topThreeTags = function(array){
       var oneTwoThreeNames = _.map(oneTwoThree, function(array){return array[0]})
       return oneTwoThreeNames;
     };  
+/** _.reduce
+* Arguments:
+*   1) An array
+*   2) A function
+*   3) A seed
+* Objectives:
+*   1) Call <function> for every element in <collection> passing the arguments:
+*         previous result, element, index
+*   2) Use the return value of <function> as the "previous result"
+*      for the next iteration
+*   3) On the very first iteration, use <seed> as the "previous result"
+*   4) If no <seed> was given, use the first element/value of <collection> as <seed> and continue to the next element
+*   5) After the last iteration, return the return value of the final <function> call
+*/
 
+//     ### 10: `genderCount`
+//     - **Objective**: Create a summary of genders, the output should be:
+//    ```javascript
+//    {
+//        male: 3,
+//        female: 4,
+//        non-binary: 1
+//    }
+//    ```
+//     - **Input**: `Array`
+//     - **Output**: `Object`
+//     - **Constraints**: Use `reduce`
 
-var genderCount;
+var genderCount = function(array){
+    var sexes = _.reduce(array, function(accumulator, current){
+        if (current.gender === "male"){
+                accumulator.male += 1;
+            }else if (current.gender === "female"){
+                accumulator.female += 1;
+            }   else {
+            accumulator["non-binary"] += 1;
+            }
+            return accumulator;
+    }, {male: 0, female: 0, "non-binary": 0}) 
+    return sexes;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
