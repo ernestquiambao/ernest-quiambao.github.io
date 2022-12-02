@@ -96,9 +96,49 @@ var friendFirstLetterCount = function(array, customer, letter){
     }        //  filter customer's friends starts with letter
 //  return             
 };
-var friendsCount;
+var friendsCount = function(array, name){
+    var namesFriends = [];  //  intialize namesFriends array
+    for (var i = 0; i < array.length; i++){ //  interate to access array[i] elements
+        for (var j = 0; j < array[i].friends.length; j++){  //  iterate to access array[i].friends array elements
+            if (array[i].friends[j].name === name){ //  test if array[i].friends[j].name property is name
+                namesFriends.push(array[i].name);   //  push array[i].name into namesFriends
+            }
+        }
+    }
+    return namesFriends;    //  return namesFriends
+    }
+    // ### 9: `topThreeTags`
+    // - **Objective**: Find the three most common tags among all customers' associated tags
+    // - **Input**: `Array`
+    // - **Output**: `Array`
+    // - **Constraints**:
+var topThreeTags = function(array){
+        //  gather all tag arrays
+      var allSubs = [];
+      var allTags;
+        for (var i = 0; i < array.length; i++){
+          allSubs.push(array[i].tags)
+        }
+      allTags = allSubs.flat();// remove sub array with .flat
+      //  initialize count object to store count of each element in allTags\
+      var count = {};
+      for (var i = 0; i < allTags.length; i++){
+        if (count.hasOwnProperty(allTags[i])){
+          count[allTags[i]]++;
+          }else{
+          count[allTags[i]] = 1;
+          }
+        
+        }
+      var countArr = (Object.entries(count)).sort((a, b) => {
+      return b[1] - a[1];
+    });
+      console.log(countArr);
+      var oneTwoThree = _.first(countArr, 3);
+      var oneTwoThreeNames = _.map(oneTwoThree, function(array){return array[0]})
+      return oneTwoThreeNames;
+    };  
 
-var topThreeTags;
 
 var genderCount;
 
