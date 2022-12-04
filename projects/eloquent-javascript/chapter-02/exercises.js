@@ -39,8 +39,19 @@ function fizzBuzz() {
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function drawChessboard() {
-
+function drawChessboard(num){
+  var board = "";
+  for (var i = 0; i < num; i++){  //  iterates creating number of rows
+      for (var j = 0; j < num; j++){  //  iterates creating row characters
+      if ((i + j) % 2 == 0){  //  tests if even
+        board += " ";   //  creates empty space
+      }else { //  else odd
+        board += "#"; //  creates # 
+      }
+  }
+  board += "\n";  //  creates new row
+  }
+console.log(board); //  prints board
 }
 
 ////////////////////////////////////////////////////////////////////////////////

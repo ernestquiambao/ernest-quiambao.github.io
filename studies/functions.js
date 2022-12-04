@@ -31,5 +31,11 @@ console.log(add);   //  prints => [Function: add]
 console.log(add(2, 3)); //  prints => 5
 
 //  3.  Named functions/Function Expressions    //
-//  In a named function, 
+//  In named function an anonymous function is assigned to a variable
+var sum = function(num1, num2){
+    return num1 + num2;
+}
+console.log(sum);   // prints => [Function: sum]
+
+//  4.  
 
