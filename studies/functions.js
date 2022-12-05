@@ -37,5 +37,16 @@ var sum = function(num1, num2){
 }
 console.log(sum);   // prints => [Function: sum]
 
-//  4.  
+//  4.  Function Expressions    //
+//  A variable can be declared and assigned a function that resolves to a value
+var func = add;
+console.log(add)    // prints => [Function: add]
 
+//  5.  Functions and Scope //
+//  A child function can access or modify variables in global or parent scopes
+ var globalVariable = 1; // variable declared in global 
+ function asdf(){
+    console.log(globalVariable);
+ }
+ asdf(); // prints => 1
+ // A parent function does not have access to 

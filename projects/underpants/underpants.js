@@ -3,6 +3,8 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
+// const { slice } = require("lodash");
+
 // const { includes } = require("lodash");
 
 var _ = {};  
@@ -22,7 +24,6 @@ var _ = {};
 *   _.identity(5) === 5
 *   _.identity({a: "b"}) === {a: "b"}
 */
-
 
 _.identity = function(value){
     //  return value
@@ -48,40 +49,29 @@ _.identity = function(value){
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
-
 _.typeOf = function(value){
-    //  test if value is a string
-    if (typeof value === "string"){
-        return "string";
-    // test if value is an array
-      }else if (Array.isArray(value)){   
-        //  return string "array"
-        return "array";
-    //  else test if value is an object
-    }else if (typeof value === "object" && value !== null && !(Array.isArray(value)) && !(value instanceof Date)){
-        //  return object
-        return "object";
-    //  else test if value is undefined
-    }else if (typeof value === "undefined"){
-        //  return string "undefined"
-        return "undefined";
-    //  else test if value is a number
-    }else if (typeof value === "number"){
-        //  return "number"
-        return "number";
-    //  else test if value is a boolean
-    }else if (typeof value === "boolean"){
-        //  return string "boolean"
-        return "boolean";
-    //  else test if value is null
-    }else if (value === null){
-        //  return string "null"
-        return "null";
-    }else if (typeof value === "function"){
-        //  return string "function"
-        return "function";
+    if (typeof value === "string"){ //  tests if value is a string
+        return "string";    //  returns "string"
+    }   else if (typeof value === "boolean"){   //  tests if value is a boolean
+        return "boolean";   //  returns "boolean"
+    }   else if (typeof value === "number"){    //  tests if value is a number
+        return "number";    //  returns "number"
+    }   else if (typeof value === "undefined"){ //  tests if value is undefined
+        return "undefined"; //  returns "undefined"
+    }   else if (typeof value === "function"){  //  tests if value is a function
+        return "function";  //  returns "function"
+    }   else if (value === null){   //  tests if value is null
+        return "null";  // returns "null"
+    }   else{   //  any other condition
+        if (Array.isArray(value)){  // tests if value is an array
+            return "array"; //  returns array
+        }   else {  //  any other object
+            return "object";    //  returns "object"
+        }
     }
 }
+
+
 /** _.first
 * Arguments:
 *   1) An array
@@ -99,22 +89,18 @@ _.typeOf = function(value){
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
-
-_.first = function(array, number){
-    //  tests if array is not an array OR number is negative
-    if (!(Array.isArray(array)) || number < 0){
-            //  returns array literal
-            return [];
-    //  tests if number is not given OR NaN
-    }else if (typeof number === 'undefined' || isNaN(number)){
-            //  return first element of array
-            return array[0];
-    //  all other conditions
-    }else{
-            //  return first number items of array
-        return array.slice(0, number);
+_.first = function(arr, num){
+    if (!Array.isArray(arr) || num < 0){   //  tests if arr is not an array
+        return [];  //  returns an empty array
+    }   else{   //  else, arr is an array
+        if (num === undefined){ //  tests if num is not passed
+            return arr[0];  //  returns first element of array
+        }   else {  //  else, array is array and num is passed
+            return arr.slice(0, num);//  return the first num elements of the array
+        }
     }
 }
+
 
 /** _.last
 * Arguments:
@@ -134,25 +120,20 @@ _.first = function(array, number){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(array, number){
-    //  tests if array is NOT an array
-    if (!(Array.isArray(array))){
-        // return array literal
-        return [];
-    //  tests if number is not given OR NaN
-    }else if (typeof number === 'undefined' || isNaN(number)){
-        //  return last element of array
-        return array[array.length - 1];
-    // tests if array length is less than number
-    }else if (array.length < number){
-        //  returns array
-        return array;
-    //  all other conditions
-    }else {
-        //  return last number items of array
-        return array.slice(array.length - number);
+_.last = function(arr, num){
+    if (!Array.isArray(arr) || num < 0){    //   tests if arr is an array OR num is negative
+        return [];  //  returns empty array
+    }   else {  //  else, arr is an array
+        if (num === undefined){ //  tests if num is passed
+            return arr[arr.length - 1]; //  if true, returns the last element of the array
+        }   else if (num > arr.length){ //  tests if num is greater than the length of array
+            return arr; //  returns whole arr
+        }   else {  //  else, num is passed
+            return arr.slice(arr.length - num);  //  returns the last num elements of the array
+        }
     }
 }
+
 
 /** _.indexOf
 * Arguments:
@@ -170,17 +151,15 @@ _.last = function(array, number){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
-_.indexOf = function(array, value){
-    //  iterate through array
-    for (var i = 0; i < array.length; i++){
-        //  test if current iteration strictly equals value
-        if (array[i] === value){
-            //  return current iteration value
-            return i;   
+_.indexOf = function(arr, val){
+    for (var i = 0; i < arr.length; i ++){//  iterate through arr
+        if (arr[i] === val){//  test if current element is val
+            return i;//  if true, return element index
         }
     }
-    return -1;
+ return -1;   //  return -1 in outermost code block
 }
+
 
 /** _.contains
 * Arguments:
@@ -196,11 +175,9 @@ _.indexOf = function(array, value){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
 _.contains = function(array, value){
-    //  loop through array
+    //  tests if array includes value.  Returns true if true, false if false
     return (array.includes(value)? true : false);
-    
 }
 
 /** _.each
@@ -220,23 +197,17 @@ _.contains = function(array, value){
 */
 
 _.each = function(collection, func){
-    //  determine if collection is an array
-    if (Array.isArray(collection)){
-        //  iterate through collection
-        for (var i = 0; i < collection.length; i++){
-            //  invoking func with the element, it's index, <collection>
-            func(collection[i], i , collection) 
+    if (Array.isArray(collection)){ //  tests if collection is an array
+        for (var i = 0; i < collection.length; i++){    //  iterate through array
+            func(collection[i], i, collection)  //  call function for each element, index, and collection
         }
-     //  else it's an object
-    } else {
-        //iterate through collection
-        for (let key in collection){
-            //  invoking func with property's value, it's key, <collection>
-            func(collection[key], key, collection);
+    }   else {  //  else it's an object
+        for (var key in collection){    //  iterate through object
+            func(collection[key], key, collection)  //  call function for each property value, key, collection
         }
     }
-return collection;
 }
+
 
 /** _.unique
 * Arguments:
@@ -247,29 +218,16 @@ return collection;
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
-// _.indexOf = function(array, value){
-//     //  iterate through array
-//     for (var i = 0; i < array.length; i++){
-//         //  test if current iteration strictly equals value
-//         if (array[i] === value){
-//             //  return current iteration value
-//             return i;   
-//         }
-//     }
-//     return -1;
-// }
+//  indexOf(arrayElement) method will return -1 if array does not contain arrayElement
 
 _.unique = function(array){
-    //  initialize newArr
-    let newArr = [];
-    //
-    for (var i = 0; i < array.length; i++){
-        if (newArr.indexOf(array[i]) === - 1){
-            newArr.push(array[i]);
+    let newArr = [];    //  initialize newArr array
+    for (var i = 0; i < array.length; i++){ //  iterate through array
+        if (newArr.indexOf(array[i]) === - 1){  //  tests if newArr does not contain current iteration element
+            newArr.push(array[i]);  //  push current element into newArr
         }
     }
-return newArr;
+return newArr;  //  returns newArr
 }
 
 /** _.filter
@@ -287,16 +245,16 @@ return newArr;
 * Extra Credit:
 *   use _.each in your implementation
 */
-
 _.filter = function(array, func){
-    let newArray = [];
-    for (var i = 0; i < array.length; i++){
-        if (func(array[i], i, array)){
-            newArray.push(array[i]);
+    var newArray = [];  //  initialize newArray with value of empty of array
+    for (var i = 0; i < array.length; i++){ //  iterate over array
+        if (func(array[i], i, array)){  //  test if passing element, index, and array returns true
+            newArray.push(array[i]);    //  if true, push element into newArray
         }
     }
-    return newArray;
+return newArray;    //  returns newArray
 }
+
 
 /** _.reject
 * Arguments:
@@ -312,14 +270,15 @@ _.filter = function(array, func){
 */
 
 _.reject = function(array, func){
-    let newArray = [];
-    for (var i = 0; i < array.length; i++){
-        if (func(array[i], i, array) === false){
-            newArray.push(array[i]);
+    var newArray = [];  //  initialize newArray
+    for (var i = 0; i < array.length; i++){ //  iterate over array
+        if (!func(array[i], i, array)){ //  test if passing element, index, and array returns not true
+            newArray.push(array[i]);    //  if not true, push into newArray
         }
     }
-    return newArray;
+return newArray;    //  returns newArray
 }
+
 
 /** _.partition
 * Arguments:
@@ -339,22 +298,18 @@ _.reject = function(array, func){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
-
 _.partition = function(array, func){
-    //  initialize new array with two sub arrays: falsey and truthy
-    let newArr = [[], []];
-    //  loop through array
-    for (var i = 0; i < array.length; i++){
-        //  call function for each element passing arguments(element, key, array)
-        if (func(array[i], i, array) === true){
-            //  pushing into newArray index 0
-                newArr[0].push(array[i]);
-            } else {
-                newArr[1].push(array[i]);
-            }
+    var newArray = [[],[]]; //  initialize newArray with two sub arrays
+    for (var i = 0; i < array.length; i++){ //  iterate through array
+        if (func(array[i], i, array)){  //  test if passing element, index, or array is truthy
+            newArray[0].push(array[i]); //  if truthy, push element into newArray[0]
+        }   else {  //  else, is falsy
+            newArray[1].push(array[i]); //  pushes element into newArray[1]
+        } 
     }
-return newArr;    
+return newArray;    //  returns newArray
 }
+
 /** _.map
 * Arguments:
 *   1) A collection
@@ -372,25 +327,17 @@ return newArr;
 */
 
 _.map = function(collection, func){
-    //  initialize newArr
-    let newArr = [];
-    //  testing if collection IS an array
-    if (Array.isArray(collection)){
-        //  loop through array
-        for (var i = 0; i < collection.length; i++){
-            //  push, into newArr, the result of passing function with arguments: the element, it's index, collection
-            newArr.push(func(collection[i], i, collection));
-            }
-    //  else is object
-    } else {        
-        //  loop through object
-        for (var key in collection){
-            //  push, into newArr, the result of passing function with arguments: the value
-            newArr.push(func(collection[key], key, collection));
-            }
+var newArray = [];  //  initialize newArray
+    if (Array.isArray(collection)){ //  test if collection is an array
+        for (var i = 0; i < collection.length; i++){    //  if true, iterate through array
+            newArray.push(func(collection[i], i, collection));  //  push the result of passing element, index, or collection into newArray
+        }   
+    }   else {  //  else, collection is an object
+        for (var key in collection){    //  iterate through collection object
+            newArray.push(func(collection[key], key, collection));  //  push the result of passing value, property or collection into func
         }
-    //  return newArr
-    return newArr;
+    }
+return newArray;    //  returns newArray
 }
 
 /** _.pluck
