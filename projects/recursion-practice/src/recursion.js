@@ -65,14 +65,14 @@ var sumBelow = function(n){
     }
     return n - 1 + sumBelow(n - 1);//  returning (n - 1) + recursion (n - 1)
   }
-    //  
-    
-    
   //  else if, number is negative
   if (n < 0){
+    //  tests if number is 0
     if (n === 0){
+      //  returns n
       return n;
     }
+    //  returns n + 1 + sumBelow(n+1)
     return (n + 1) + sumBelow(n + 1);
   }
 }
@@ -81,6 +81,7 @@ var sumBelow = function(n){
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  
 };
 
 // 7. Compute the exponent of a number.

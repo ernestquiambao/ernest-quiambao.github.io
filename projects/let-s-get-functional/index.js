@@ -22,11 +22,13 @@ const { mapValues } = require('lodash');
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
-var maleCount = function(array) {
-    let males = _.filter(array, function(customer){
+var maleCount = function(array) {  
+    //  building array filled with objects who have the property value of male
+    let males = _.filter(array, function(customer){     
         return customer.gender === 'male';
-        })   //
-    return males.length;
+        })   
+//  returning length of males array
+return males.length;    
 };
 
 var femaleCount = function(array){
@@ -71,31 +73,27 @@ var averageBalance = function(array){
     return totalBalance / array.length; //  returning the totalBalance divided by the number of elements in array
 };
 
-var firstLetterCount = function(array, letter){
-    let first = _.filter(array, function(customer){ //  
+var firstLetterCount = function(array, letter){ //  function takes array and single string input
+    let first = _.filter(array, function(customer){ //  Build an array with only names of customers with the starting first letter in their name
        return customer.name[0].toLowerCase() === letter.toLowerCase();
       
     })
-  return first.length;
+  return first.length;  //  returning the length value of array first
 };
-// ### 7: `friendFirstLetterCount`
-//  - **Objective**: Find how many friends of a given customer have names that start with a given letter
-//  - **Input**: `Array`, `Customer`, `Letter`
-//  - **Output**: `Number`
-//  - **Constraints**:
+
 
 var friendFirstLetterCount = function(array, customer, letter){
     
     for (var i = 0; i < array.length; i++){     //  iterate array
         if (array[i].name === customer){     //  test if array[i] is customer
-            let friendFirstLet = _.filter(array[i].friends, function(friend){ // 
+            let friendFirstLet = _.filter(array[i].friends, function(friend){ // Build an array with only friends' name that start with same letter 
                 return friend.name[0].toLowerCase() === letter.toLowerCase();
                 })
-                return friendFirstLet.length;
-            }
-    }        //  filter customer's friends starts with letter
-//  return             
+                    return friendFirstLet.length;   //  return length of friendFirstList
+                }
+    }               
 };
+
 var friendsCount = function(array, name){
     var namesFriends = [];  //  intialize namesFriends array
     for (var i = 0; i < array.length; i++){ //  interate to access array[i] elements
@@ -107,77 +105,48 @@ var friendsCount = function(array, name){
     }
     return namesFriends;    //  return namesFriends
     }
-    // ### 9: `topThreeTags`
-    // - **Objective**: Find the three most common tags among all customers' associated tags
-    // - **Input**: `Array`
-    // - **Output**: `Array`
-    // - **Constraints**:
+
 var topThreeTags = function(array){
-        //  gather all tag arrays
+        //  initialize array to fill with sub arrays containing tags
       var allSubs = [];
       var allTags;
-        for (var i = 0; i < array.length; i++){
+        for (var i = 0; i < array.length; i++){ //  iterating through array 
+            //  pushing tag property into allSubs array
           allSubs.push(array[i].tags)
         }
       allTags = allSubs.flat();// remove sub array with .flat
       //  initialize count object to store count of each element in allTags\
       var count = {};
-      for (var i = 0; i < allTags.length; i++){
-        if (count.hasOwnProperty(allTags[i])){
-          count[allTags[i]]++;
-          }else{
-          count[allTags[i]] = 1;
+      for (var i = 0; i < allTags.length; i++){ //  iterating through allTags array
+        if (count.hasOwnProperty(allTags[i])){  //  testing if count object has current element
+          count[allTags[i]]++;  //  if true, adding 1 to value
+          }else{    //  false
+          count[allTags[i]] = 1;    //  adding the property to count and assigning value of 1
           }
         
         }
-      var countArr = (Object.entries(count)).sort((a, b) => {
+      var countArr = (Object.entries(count)).sort((a, b) => {   //  initializing countArr with sorted array by value
       return b[1] - a[1];
     });
       console.log(countArr);
-      var oneTwoThree = _.first(countArr, 3);
-      var oneTwoThreeNames = _.map(oneTwoThree, function(array){return array[0]})
-      return oneTwoThreeNames;
+      var oneTwoThree = _.first(countArr, 3);   //  initializing oneTwoThree array with the first 3 objects in countArr
+      var oneTwoThreeNames = _.map(oneTwoThree, function(array){return array[0]})   //  initializing oneTwoThreeNames with an array of the name properties of oneTwoThree
+      return oneTwoThreeNames;  //  returning oneTwoThreeNames array
     };  
-/** _.reduce
-* Arguments:
-*   1) An array
-*   2) A function
-*   3) A seed
-* Objectives:
-*   1) Call <function> for every element in <collection> passing the arguments:
-*         previous result, element, index
-*   2) Use the return value of <function> as the "previous result"
-*      for the next iteration
-*   3) On the very first iteration, use <seed> as the "previous result"
-*   4) If no <seed> was given, use the first element/value of <collection> as <seed> and continue to the next element
-*   5) After the last iteration, return the return value of the final <function> call
-*/
 
-//     ### 10: `genderCount`
-//     - **Objective**: Create a summary of genders, the output should be:
-//    ```javascript
-//    {
-//        male: 3,
-//        female: 4,
-//        non-binary: 1
-//    }
-//    ```
-//     - **Input**: `Array`
-//     - **Output**: `Object`
-//     - **Constraints**: Use `reduce`
 
 var genderCount = function(array){
-    var sexes = _.reduce(array, function(accumulator, current){
-        if (current.gender === "male"){
-                accumulator.male += 1;
-            }else if (current.gender === "female"){
-                accumulator.female += 1;
-            }   else {
-            accumulator["non-binary"] += 1;
+    var sexes = _.reduce(array, function(accumulator, current){ //  
+        if (current.gender === "male"){ //  testing if current element has gender property of male
+                accumulator.male += 1;  //  if yes, adding 1 to male property
+            }else if (current.gender === "female"){ //  else if, gender is female
+                accumulator.female += 1;    //  adding 1 to female property
+            }   else {  //  else non-binary
+            accumulator["non-binary"] += 1; //  adding 1 to non-binary property
             }
-            return accumulator;
-    }, {male: 0, female: 0, "non-binary": 0}) 
-    return sexes;
+            return accumulator; //  returns accumulator object
+    }, {male: 0, female: 0, "non-binary": 0}) //    Initializing seed with an object with gender properties
+    return sexes;   //  returns sexes object
 }
 
 //////////////////////////////////////////////////////////////////////
