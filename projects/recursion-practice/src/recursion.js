@@ -148,12 +148,18 @@ return false;
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object. 2+2+2+2
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y) {
+var multiply = function(x, y, sum = 0) {
+  if (y === 0){
+    return sum;
+  }
+  sum = sum + x
+  return multiply(x, y - 1, sum);
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -175,21 +181,40 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  if (str1.length === 0 && str2.length === 0){
+    return true;
+  }
+  if (str1[0] === str2[0]){
+    return compareStr(str1.slice(1), str2.slice(1));
+  }else{
+    return false;
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str){
+var createArray = function(str, output = []){
+  if (str.length === 0){
+    return output;
+  }
+  output.push(str[0]);
+  return createArray(str.slice(1), output);
 };
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function (array, revArr = []) {
+  if (array.length === 0){
+    return revArr;
+  }
+  revArr.push(array[array.length - 1]);
+  console.log(revArr);
+  return reverseArr(array.slice(0, array.length - 1), revArr);
 };
-
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  
 };
 
 // 19. Count the occurence of a value inside a list.
