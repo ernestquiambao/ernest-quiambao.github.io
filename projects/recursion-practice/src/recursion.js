@@ -80,10 +80,23 @@ var sumBelow = function(n){
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
-// var range = function(x, y, output = []) {
-// if (x > y){
-//   //  test if x is greater than y
-// };
+var range = function(x, y) {
+var arr = [];
+if (x===y){
+  return arr;}
+  else if (x===y-1 || x===y+1){
+    return arr;
+  }
+  if (x > y)
+{
+  var tempNum =x-1;
+}
+if (x<y){
+  var tempNum = x+1;
+}
+arr.push(tempNum);
+return arr.concat(range(tempNum, y));
+};
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -129,13 +142,13 @@ var palindrome = function(string){
   if (string.length === 1){  //  tests if string is 1 character long
     return true;  //  if true, return true
   }
-  if (string.length === 2){
-    if (string[0] === string[1]){
-      return true;
-    }else{
-      return false;
+  if (string.length === 2){ //  tests if string is 2 characters long
+    if (string[0] === string[1]){ //  if true, tests if 2 characters are the same
+      return true;  //  if true, returns true
+    }else{  //  else, characters not the same
+      return false; // returns false
     }
-  }
+  } //  tests if first and last characters are the same when 
   if (string[0].toUpperCase() === (string.slice(-1)).toUpperCase()){
     return palindrome((string.slice(1, -1)).split(" ").join(""));
   }
@@ -419,7 +432,33 @@ return alternateSign(array.slice(1), output);
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str, output = "") {
+var numToText = function(str) {
+  if (str.length === 0) return '';
+  var tempStr = numToText(str.substring(0, str.length-1));
+  var replace;
+  switch (str[str.length-1]){
+    case '1': replace = 'one';
+    break;
+    case '2': replace = 'two';
+    break;
+    case '3': replace = 'three';
+    break;
+    case '4': replace = 'four';
+    break;
+    case '5': replace = 'five';
+    break;
+    case '6': replace = 'six';
+    break;
+    case '7': replace = 'seven';
+    break;
+    case '8': replace = 'eight';
+    break;
+    case '9': replace = 'nine';
+    break;
+    default: replace = str[str.length-1];
+    break;
+  }
+return tempStr + replace;
 };
 
 // *** EXTRA CREDIT ***
