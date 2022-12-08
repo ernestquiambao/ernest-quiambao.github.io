@@ -108,9 +108,11 @@ var exponent = function(base, exp) {
     if (exp === 0){
     return 1;
     }
-
+if (exp > 0){
   return base * exponent(base, exp -1);
-  
+}else{
+  return (1 / base) * exponent(base, exp + 1);
+}
 };
 
 // 8. Determine if a number is a power of two.
@@ -118,14 +120,15 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
-if (n === 0){
-  return true;
-}else if (n < 1){
-  return false;
-}
-return powerOfTwo(n/2);
-};
-
+  if (n === 0){
+    return false;
+  }else if (n === 1){
+    return true;
+  }else if (n % 2 === 1){
+    return false;
+  }
+  return powerOfTwo(n/2);
+  };
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string, output = "") {
@@ -167,13 +170,19 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object. 2+2+2+2
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
-var multiply = function(x, y, sum = 0) {
-  if (y === 0){
-    return sum;
+var multiply = function(x, y) {
+  if (x === 0 || y === 0) { 
+          return 0;  
   }
-  sum = sum + x
-  return multiply(x, y - 1, sum);
-};
+  
+  else if( y < 0 ) {
+      return - x + multiply(x, y + 1); 
+  }
+  
+  else {
+      return x + multiply(x, y - 1);
+  }
+  };
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
