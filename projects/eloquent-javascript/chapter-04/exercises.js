@@ -7,20 +7,20 @@ O: returns array
 */
 
 function range(start, end, step){
-  if (start === end || step < 0){
-    return [];
-  }else if (step === undefined){
-    var output = [];
-    for (var i = start; i <= end; i++){
-      output.push(i);
+  if (start === end || step < 0){ //  tests if start is equal to end OR step < 0
+    return [];  //  returns empty array
+  }else if (step === undefined){  //  tests if step was not passed
+    var output = [];  //  initialize output array
+    for (var i = start; i <= end; i++){ //  iterate from start to end
+      output.push(i); //  populate output array
     }
-  }else{
-    var output = [];
-    for (var i = start; i <= end; i+=step){
-      output.push(i)
+  }else{//  else, step was passed
+    var output = [];  // initialize output array
+    for (var i = start; i <= end; i+=step){ //  iterate from start to end incrementing by step value
+      output.push(i)  //  populate output array
     }
   }
-  return output;
+  return output;  //  returning output array
   }
 
 
@@ -29,11 +29,11 @@ function range(start, end, step){
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum(array) {
-  if (array.length === 0){//  base
-    return 0; 
+function sum(array) { 
+  if (array.length === 0){//  tests if array length is equal to 0
+    return 0; //  return 0
   }
-  return array[0] + sum(array.slice(1));
+  return array[0] + sum(array.slice(1)); // returns first element of array plus the rest of the array
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,11 +42,11 @@ function sum(array) {
 
   
 function reverseArray(array, output = []) {
-  if (array.length === 0){
-    return output;
+  if (array.length === 0){ // tests if array length is 0
+    return output;  //  returns output
   }
-output.push(array[array.length - 1]);
-return reverseArray(array.slice(0, array.length - 1), output)
+output.push(array[array.length - 1]); //  pushes last element into output array
+return reverseArray(array.slice(0, array.length - 1), output) //  returns reverseArray function with array with last index removed, current output
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -89,17 +89,28 @@ return listToArray(list.rest, output);
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function prepend() {
-
+// function prepend, which takes an element and a list and creates a new list 
+//that adds the element to the front of the input list,
+function prepend(element, list) {
+  let output = {};
+  output.value = element;
+  output.rest = list;
+return output;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-function nth() {
-
+//takes a list and a number and returns the element at the given position in the 
+//list (with zero referring to the first element) or undefined when there is no such element.
+function nth(list, num){
+  if (num < 0){
+    return;
+  }
+  if (num === 0){
+    return list.value;
+  }
+return nth(list.rest, num - 1)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -114,12 +125,12 @@ function deepEqual(x, y) {
     return false;
   }
   //create arrays of objects keys
-  let xKeys = Object.keys(x);
-  let yKeys = Object.keys(y);
+  let xKeys = Object.keys(x);// ['a']
+  let yKeys = Object.keys(y);// ['a']
   //determine if xkeys and ykeys have different lengths
   if (xKeys.length !== yKeys.length){
     return false;
-  }
+  }// iterate through keys to check if they match
   for (let i = 0; i < xKeys.length; i++){
     if (!yKeys.includes(xKeys[i]) || !deepEqual(x[xKeys[i]], y[yKeys[i]])){
       return false;

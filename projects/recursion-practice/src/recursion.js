@@ -291,7 +291,7 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
 var fibonacci = function(n, output = [0, 1]) {
-  console.log(n);
+
   if (n === 1){
     return output;
   }
