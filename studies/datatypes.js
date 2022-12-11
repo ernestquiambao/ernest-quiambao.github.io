@@ -73,6 +73,8 @@ var genres = {
     family: "Millions",
     drama: "Trainspotting"
 }
+console.log(genres.family); //  prints => Millions
+
 //  8. NaN  //
 //  The value of NaN is a number value representing a value that is not a number
 var aye = a;
@@ -80,3 +82,23 @@ var bee = 37;
 console.log(aye + bee); //  prints => NaN
 
 //  9. Infinity and -Infinity   //
+//  Infinity and negative infinity represent numbers that are larger than any other numbers
+console.log(1/0);   //  prints => Infinity
+console.log(-1/0);  //  prints => -Infinity
+
+//  10. Copy by Reference vs Copy by Value  //
+//  Primitive value types, when copied as copied by their actual value leaving the reference value unchanged.
+let a = 9;
+let b = "hello";
+let c = a;
+c = c + 1;  //  
+console.log(c)  //  prints => 10
+console.log(a)  //  prints => 9
+//  Complex datatypes are copied by reference.  When a variable is assigned the value of an object or array, the variable*
+//  points to the same value and either variable assignment can change the same value.
+var originalArray = [1, 2, 3];
+console.log(originalArray);  //  prints => [1, 2, 3];
+var newArray = originalArray;
+console.log(newArray);  //  prints => [1, 2, 3];
+newArray[2] = "oops!"
+console.log(originalArray); //  prints => [1, 2, 'oops!']
