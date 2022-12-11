@@ -54,6 +54,8 @@ return reverseArray(array.slice(0, array.length - 1), output) //  returns revers
 ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArrayInPlace(array) {
+//  make array half the length of input array
+
 
 }
 
