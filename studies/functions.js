@@ -27,6 +27,7 @@ return num1 + num2
 }
 console.log(add);   //  prints => [Function: add]
 
+//  2.  Parameters  //
 //  calling/executing/invoking a function by the function's name and replacing parentesis with arguments
 console.log(add(2, 3)); //  prints => 5
 
@@ -49,4 +50,21 @@ console.log(add)    // prints => [Function: add]
     console.log(globalVariable);
  }
  asdf(); // prints => 1
- // A parent function does not have access to 
+ // A parent function does not have access to variables in their child scopes
+
+ function seeThis(){
+    var localVariable = "Still in here";
+ }
+ console.log(localVariable);    //  prints => ReferenceError: localVariable is not defined
+
+ // 6. Closures //
+ // A useful feature of functions is their ability to form closures.  Closures refer to 
+ // a function with a preserved value.
+ function multiply(factor){
+    return function(number){
+      return number * factor;
+    }
+   }
+  var twoTimes = multiply(2);   //  create variable that binds the passed value of 2
+  console.log(twoTimes);
+  console.log(twoTimes(6)); //  prints => 12
