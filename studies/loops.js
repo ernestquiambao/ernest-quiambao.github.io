@@ -39,3 +39,13 @@ console.log(arrForward);  //  prints => ['a', 'b', 'c','d', 'e', 'f','g', 'h', '
 //  For-in Loops    //
 //  Since objects are not zero-indexed, they cannot be iterated through an index value.  Objects must be iterated through *
 //  using a for-in loop; where each iteration is called by the object property's keys.
+let person = {
+    hairColor: "Black",
+    eyeColor: "Brown",
+
+};
+let personColors = [];
+for (var key in person){    //  for keyword followed by the key and object in parenthesis
+    personColors.push(person[key]); //  inside code block the code to be executed on each iteration
+}
+console.log(personColors);  //  prints => [ 'Black','Brown']
