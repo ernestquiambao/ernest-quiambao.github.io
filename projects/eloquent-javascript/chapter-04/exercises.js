@@ -54,9 +54,17 @@ return reverseArray(array.slice(0, array.length - 1), output) //  returns revers
 ////////////////////////////////////////////////////////////////////////////////
 
 function reverseArrayInPlace(array) {
-//  make array half the length of input array
-
-
+  //  iterate through half of the array
+  for (var i = 0; i < Math.floor(array.length / 2); i++) {
+    //  store original 
+    let original = array[i]; 
+    //  replace current character with its opposite
+    array[i] = array[array.length - 1 - i]; 
+    //  replace opposite value with original
+    array[array.length - 1 - i] = old; //set "opposite" to be original i value
+  }
+  //  return array
+  return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
