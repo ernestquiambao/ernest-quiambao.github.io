@@ -61,7 +61,7 @@ function reverseArrayInPlace(array) {
     //  replace current character with its opposite
     array[i] = array[array.length - 1 - i]; 
     //  replace opposite value with original
-    array[array.length - 1 - i] = old; //set "opposite" to be original i value
+    array[array.length - 1 - i] = original; //set "opposite" to be original i value
   }
   //  return array
   return array;
