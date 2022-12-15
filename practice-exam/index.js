@@ -110,44 +110,56 @@ var filterSpecies = dogs.filter(contestant => contestant.species === "dog");
     
 // 4. For safty purposes, let's create a copy of our array. Using the spread operator, assign a copy of our `filterSpecies` array to our 
 //     `dogContestants` variable.
-var dogContestants = [...filterSpecies];
+var dogContestants = [];
+
+filterSpecies.forEach(function(contestant){
+    let copy = Object.assign({}, contestant);
+    dogContestants.push(copy);
+})
 
 // 5. Now that we have our `dogContestants` array, we need to add a `class` property to each dog object.
 //     Using the native map method, add a key of `class` with the value:
 //         - "red" if the dog's weight is between 0 and 10.
 //         - "yellow" if the dog's weight is between 11 and 20.
 //         - "green" if the dog's weight is 21 or over.
+
 var dogsWithClasses = 
 dogContestants.map(function(contestant){
+    let copy = Object.assign({}, contestant)
     if (contestant.weight >= 0 && contestant.weight <= 10){
-        contestant['class'] = "red";
+        copy.class = "red";
     }else if (contestant.weight >= 11 && contestant.weight <=20){
-        contestant['class'] = "yellow";
+        copy.class = "yellow";
     }else{
-        contestant['class'] = "green";
+        copy.class = "green";
     }
-    return contestant;
+    return copy;
 });
 
 // 6. The votes are in! We have an array of the top dogs in each class
 //     Using recursion, copy all of the properties into one object and return that object. 
 //     If you'd like an idea of our data structure, look in the dogData.js file.  ***Use recursion to turn topDogs into one object
 
+// var firstInClass = function(array, output = {}){
+// if (array.length === 0){
+//     return output;
+// }
+// for (var key in array[0]){
+//     output[key] = array[0][key];
+// }
+// return firstInClass(array.slice(1), output);
+// }
 var firstInClass = function(array, output = {}){
-if (array.length === 0){
-    return output;
+    if (array.length === 0){
+        return output;
+    }
+    output = {...output, ...array[0]};
+    return firstInClass(array.slice(1), output);
 }
-for (var key in array[0]){
-    output[key] = array[0][key];
-}
-return firstInClass(array.slice(1), output);
-}
-
 // 7. For statistical reasons, lets count all of the votes we recieved for our dog and non-dog contestants!
 //     Using reduce, find the sum of the votes casted.
 var votes =
 dogs.reduce(function(acc, current){
-    acc += current.votes;
-    return acc;
+    return acc + current.votes;
 }, 0)
 
